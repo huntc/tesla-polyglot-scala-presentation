@@ -1,0 +1,329 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Tesla Polyglot Scala</title>
+    
+    <meta name="description" content="A presentation on tesla-polyglot for Scala." />
+    <meta name="author" content="Christopher Hunt" />
+
+    <link href="css/index.css" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+
+    <div class="step">
+        <h1>Tesla Polyglot Scala</h1>
+        <img src="images/tesla-logo.png" width="426" height="198" alt="Tesla Logo">
+        <blockquote>
+            Who uses Maven? Who uses sbt? Who uses something else?
+        </blockquote>
+    </div>
+
+    <div class="step">
+        <h1>Who am I</h1>
+        <p>Christopher Hunt</p>
+        <p>@huntchr</p>
+        <img src="images/typesafe-logo-big.png" width="317" height="76" alt="Typesafe Logo Big">
+        <blockquote>
+            Developer for 30 years.
+            Used many languages including COBOL!
+            Committer on Play, author of Maven JavaScript Tools, JS Test Runner and other things.
+        </blockquote>
+    </div>
+
+    <div class="step">
+        <h1>typesafe.com</h1>
+        <p>Build Reactive Apps on the JVM!</p>
+        <p>typesafe.com</p>
+        <img src="images/typesafe-logo-big.png" width="317" height="76" alt="Typesafe Logo Big">
+        <blockquote>
+            Scala, Akka, Play
+			Caretakers of Scala
+            Martin Odersky
+            Jonas Boner
+        </blockquote>
+    </div>
+
+    <div class="step">
+        <h1>Reactive</h1>
+        <p>Event driven, scalable, resilient, interactive</p>
+        <br/>
+        <img src="images/reactive.png" width="544" height="83" alt="Reactive">
+		<br/>
+		<br/>
+		<a href="http://www.reactivemanifesto.org/">http://www.reactivemanifesto.org/</a>
+		<blockquote>
+			- Resilient - recover and repair itself automatically for seamless business continuity
+			- Interactive - rich &amp; engaging, providing instant feedback based on user interactions
+			- Scalable - predictably &amp; elastically scalable; On-demand across cores, nodes and clusters
+			- Event-Driven - processes messages in parallel, asynchronously without blocking, lock free
+		</blockquote>
+    </div>
+
+    <div class="step">
+        <h1>Tesla</h1>
+        <p>Goal: next generation delivery<br/>infrastructure for the JVM</p>
+        <img src="images/jason-van-zyl.png" width="146" height="155" alt="Jason Van Zyl">
+        <blockquote>
+			- Jason Van Zyl
+			  - create Maven
+			- Tesla is beyond just building
+			 - CI
+			 - build avoidance
+			 - CD
+			 - Provisioning &amp; software delivery
+			 - Polyglot
+        </blockquote>
+    </div>
+
+    <div class="step" data-z="-500">
+        <h1>Tesla Polyglot</h1>
+        <p>Atom (Google Blaze)</p>
+        <p>Clojure</p>
+        <p>Groovy</p>
+        <p>Ruby</p>
+        <p>Scala</p>
+        <p>Yaml</p>
+        <blockquote>
+			- Maven's core is not, and never has been, tied to XML. 
+			- It's just a front-end format and really anything is possible
+			- Think of the xml as the object code
+			- translations available
+        </blockquote>
+    </div>
+
+    <div class="step" data-z="-500">
+        <img class="elephant" src="images/elephant-in-room.jpg" width="800" height="543" alt="Elephant">
+        <blockquote>
+			- a stepping stone toward sbt
+			- existing Maven/Scala experience poor
+			- shouldn't *have* to use sbt
+			 - should want to
+			- we still believe that sbt is the best tool for building Scala
+			- embrace existing knowledge
+        </blockquote>
+    </div>
+
+    <div class="step" data-z="-500">
+        <h1>Tesla Polyglot - XML</h1>
+		<pre class="xml-compare">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;io.tesla.polyglot&lt;/groupId&gt;
+    &lt;artifactId&gt;tesla-polyglot&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;/parent&gt;
+  &lt;artifactId&gt;tesla-polyglot-scala&lt;/artifactId&gt;
+  &lt;name&gt;Polyglot Tesla :: Scala&lt;/name&gt;
+  &lt;contributors&gt;
+    &lt;contributor&gt;
+      &lt;name&gt;Christopher Hunt&lt;/name&gt;
+      &lt;organization&gt;Typesafe&lt;/organization&gt;
+      &lt;organizationUrl&gt;http://typesafe.com&lt;/organizationUrl&gt;
+    &lt;/contributor&gt;
+  &lt;/contributors&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;io.tesla.polyglot&lt;/groupId&gt;
+      &lt;artifactId&gt;tesla-polyglot-common&lt;/artifactId&gt;
+      &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.twitter&lt;/groupId&gt;
+      &lt;artifactId&gt;util-eval&lt;/artifactId&gt;
+      &lt;version&gt;6.3.7&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.googlecode.kiama&lt;/groupId&gt;
+      &lt;artifactId&gt;kiama_2.9.2&lt;/artifactId&gt;
+      &lt;version&gt;1.4.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.scala-lang&lt;/groupId&gt;
+      &lt;artifactId&gt;scala-library&lt;/artifactId&gt;
+      &lt;version&gt;2.9.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.specs2&lt;/groupId&gt;
+      &lt;artifactId&gt;specs2_2.9.3&lt;/artifactId&gt;
+      &lt;version&gt;1.12.4.1&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+		</pre>
+    </div>
+
+    <div class="step" data-z="-500">
+        <h1>Tesla Polyglot - Groovy</h1>
+		<pre class="groovy-compare">
+project {
+  modelVersion '4.0.0'
+  parent {
+    groupId 'io.tesla.polyglot'
+    artifactId 'tesla-polyglot'
+    version '0.0.1-SNAPSHOT'
+  }
+  artifactId 'tesla-polyglot-scala'
+  name 'Polyglot Tesla :: Scala'
+  contributors {
+    contributor {
+      name 'Christopher Hunt'
+      organization 'Typesafe'
+      organizationUrl 'http://typesafe.com'
+    }
+  }
+  dependencies {
+    dependency {
+      groupId 'io.tesla.polyglot'
+      artifactId 'tesla-polyglot-common'
+      version '0.0.1-SNAPSHOT'
+    }
+    dependency {
+      groupId 'com.twitter'
+      artifactId 'util-eval'
+      version '6.3.7'
+    }
+    dependency {
+      groupId 'com.googlecode.kiama'
+      artifactId 'kiama_2.9.2'
+      version '1.4.0'
+    }
+    dependency {
+      groupId 'org.scala-lang'
+      artifactId 'scala-library'
+      version '2.9.3'
+    }
+    dependency {
+      groupId 'org.specs2'
+      artifactId 'specs2_2.9.3'
+      version '1.12.4.1'
+      scope 'test'
+    }
+    dependency {
+      groupId 'junit'
+      artifactId 'junit'
+      scope 'test'
+    }
+  }
+		</pre>
+    </div>
+
+    <div class="step" data-z="-500">
+        <h1>Tesla Polyglot<br/>POM LOC Comparisons</h1>
+        <img src="images/loc-chart.png" width="467" height="217" alt="LOC Comparison">
+    </div>
+
+    <div class="step" data-z="-500">
+        <h1>Tesla Polyglot - Scala</h1>
+		<pre class="scala-compare">
+import org.sonatype.maven.polyglot.scala.model._
+
+Model(
+  "" % "tesla-polyglot-scala",
+  modelVersion = "4.0.0",
+  parent = Parent("io.tesla.polyglot" % "tesla-polyglot" % "0.0.1-SNAPSHOT"),
+  name = "Polyglot Tesla :: Scala",
+  contributors = Seq(
+    Contributor(
+      name = "Christopher Hunt",
+      organization = "Typesafe",
+      organizationUrl = "http://typesafe.com"
+    )
+  ),
+  dependencies = Seq(
+    Dependency("io.tesla.polyglot" % "tesla-polyglot-common" % "0.0.1-SNAPSHOT"),
+    Dependency("com.twitter" % "util-eval" % "6.3.7"),
+    Dependency("com.googlecode.kiama" % "kiama_2.9.2" % "1.4.0"),
+    Dependency("org.scala-lang" % "scala-library" % "2.9.3"),
+    Dependency("org.specs2" % "specs2_2.9.3" % "1.12.4.1", scope = "test"),
+    Dependency("junit" % "junit", scope = "test")
+  ),
+		</pre>
+        <blockquote>
+			- named parameters
+			- default args
+			- functional
+			- full Scala 
+			 - not really a DSL 
+			 - just a set of domain objects
+			- scope for improvement 
+			 - shorthand for dependencies
+        </blockquote>
+    </div>
+
+    <div class="step" data-z="-1000">
+		<h1>Under the Hood</h1>
+        <img src="images/under-the-hood.jpg" width="550" height="413" alt="Under the hood">
+        <blockquote>
+		  - everything translates to a Maven Model - Java POJOs
+		  - pom.xml has precedence over pom.scala etc.
+		  - scala classes are cached in the target folder to minimise the need for compilation
+		   - similar to sbt in this regard
+        </blockquote>
+    </div>
+
+    <div class="step" data-z="-1500">
+		<h1>Soon... inlined Plugins</h1>
+		<pre>
+Model(
+  "io.tesla.polyglot" % "tesla-polyglot" % "0.0.1-SNAPSHOT",
+  Build(
+    tasks = Seq(
+      Task("hello", "validate") {
+        p =>
+          println("hello, I am Scala inside Maven.")
+      }
+    )
+  )
+)
+		</pre>
+        <blockquote>
+		  - id, phase, block with project passed in
+		  - #1 complaint about Maven
+        </blockquote>
+    </div>
+
+    <div class="step">
+		<h1>Next Steps</h1>
+		<a href="http://christopherhunt-software.blogspot.com.au">
+			christopher hunt software
+		</a>
+		<br/>
+		<br/>
+		@huntchr
+        <blockquote>
+		  - finish domain model (almost done)
+		  - release tesla-polyglot (waiting on me mainly)
+		  - may be use sbt eval 
+		   - or externalise that
+		  - inline plugins
+        </blockquote>
+    </div>
+
+    <script src="js/impress.js"></script>
+    <script>impress().init();</script>
+
+</body>
+</html>
+
